@@ -1,3 +1,28 @@
-#map {
-    height: 98vh
+/* Structure en plein écran */
+.custom-header {
+    background-color: #00a2ae;
+    color: white;
+    padding: 1rem;
+}
+
+.content {
+    flex: 1;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-footer {
+    background-color: #00a2ae;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Adaptation pour le contenu si nécessaire */
+.content h2, .content p {
+    text-align: center;
+    margin: 0;
 }
