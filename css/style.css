@@ -5,6 +5,11 @@
     padding: 1rem;
 }
 
+.center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .content {
     flex: 1;
     overflow: hidden;
