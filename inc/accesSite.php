@@ -27,11 +27,12 @@
 
     if ($stmt->rowCount() > 0) {
         echo "Résultats trouvés : <br>";
-        header('Refresh: 3; URL=../accueil.php');
+        header('Refresh: 3; URL=../accueil.html');
         echo 'Vous serez redirigé dans 3 secondes...';
         exit();
     } 
     
     else {
         echo "Aucun résultat trouvé.";
+        header('Location: ../index.php');
     }
