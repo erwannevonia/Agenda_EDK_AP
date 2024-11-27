@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connexion à Agenda-EDK</title>
+        <link href="./bootstrap-5.0.2-dist/css/bootstrap.min.css" media="all" rel="stylesheet">
+    </head>
+
+    <body class="d-flex justify-content-center align-items-center min-vh-100">
+
+        <!-- Modal statique toujours visible -->
+        <div class="modal d-block position-static" tabindex="-1" aria-labelledby="staticModalLabel" aria-hidden="true">
+            <!-- La taille de la modal est large -->
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <!-- Titre de la modal -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticModalLabel">Connexion à EDK</h5>
+                    </div>
+                    <!-- Formulaire -->
+                    <form id="formulaire" action="inc/accesSite.php" method="POST"> <!-- Action à compléter -->
+                        <!-- Contenu du corps de la modal -->
+                        <div class="modal-body">
+                            <h6>Identifiant</h6>
+                            <!-- Champs du formulaire -->
+                            <input type="text" class="form-control mb-3" id="identifiant" name="identifiant" placeholder="Entrez votre identifiant" required>
+                            <h6>Mot de passe</h6>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                        </div>
+                        <!-- Footer / Boutons de validation du formulaire -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Lien pour intégrer le JavaScript du site -->
+        <script src="./bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+
+    </body>
+    
+</html>
