@@ -2,7 +2,7 @@
 
     try {
         // chaine de connexion à la base de données
-        $dsn='mysql:host=172.16.198.254;dbname=EDK';
+        $dsn='mysql:host=localhost;dbname=EDK';
 
         // option de connexion encodage UTF8 pour MySQL
         $options = [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"];

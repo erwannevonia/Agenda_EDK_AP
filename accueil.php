@@ -1,3 +1,14 @@
+<?php
+    require 'inc/functions.php';
+    session_start();
+    if (isset($_SESSION["ID"])) {
+    }
+    else {
+        header('Location: index.php');
+        exit();
+    }
+?>
+
 <!doctype html>
 <html lang="fr">
 
@@ -19,9 +30,16 @@
                 Prototype Agenda
             </h1>
             <nav>
-                <a href="index.html" class="text-white">Accueil</a>
+                <p>
+                    <?php
+                        echo "Bienvenue ";
+                        echo $_SESSION['Compte'];
+                        echo " !";
+                    ?>
+                </p>
                 <a href="#services" class="text-white">Services</a>
                 <a href="#contact" class="text-white">Contact</a>
+                <a href="inc/deconnect.php" class="text-white">Se déconnecter</a>
             </nav>
         </div>
     </header>
@@ -30,6 +48,13 @@
         <tr>
             <th scope="col">
                 <div id='calendar'></div>
+            </th>
+            <th scope="col" style="max-width: 75vh">
+                <div class="border border-5 rounded border-primary">
+                    <?php
+                        remplirDevoirs();
+                    ?> 
+                </div>
             </th>
             <th scope="col">
                 <!-- Bouton pour ouvrir la modal -->
@@ -58,15 +83,14 @@
                 <form id="formulaire" action="inc/add.php" method="POST">
                     <!-- Body de la Modal -->
                     <div class="modal-body">
-                        <p>Nom du devoir</p>
-                        <input type="text" id="nom" name="nom" required>
+                        <p>Description du devoir :</p>
+                        <textarea id="nom" name="nom" rows="5" cols="100" required></textarea>
                         <br><br><br>
                         <p>Date à rendre</p>
                         <input type="date" id="date" name="date" required>
                     </div>
                     <!-- Footer, la partie du bas de la modal -->
                     <div class="modal-footer">
-                        <!-- le must, ça serait qu'en cliquant sur le bouton, on envoie les données en bdd (rajoute surement un id du coup) -->
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                 </form>
