@@ -1,0 +1,7 @@
+{
+    "require": {
+        "sentry/sdk": "^4.0",
+        "spomky-labs/otphp": "10.0.3",
+        "christian-riesen/base32": "^1.6"
+    }
+}

@@ -1,4 +1,20 @@
+<?php
+    include "./PDO/PDO_Classe.php";
+    session_start();
+    if(isset($_GET['error'])) {
+        $error = $_GET['error'];
+        echo '
+        <div class="alert alert-danger" role="alert">
+            La combinaison d\'identifiant et de mot de passe est incorrect.
+        </div>';
+    }
+    if(isset($_SESSION["ID"])) {
+        header('Location: accueil.php');
+    }
 
+    $listeAllClasses = PDO_Classe::getAll();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -9,21 +25,8 @@
     </head>
 
     <body>
-        <?php
-            session_start();
-            if(isset($_GET['error'])) {
-                $error = $_GET['error'];
-                echo '
-                <div class="alert alert-danger" role="alert">
-                    La combinaison d\'identifiant et de mot de passe est incorrect.
-                </div>';
-            }
-            if(isset($_SESSION["ID"])) {
-                header('Location: accueil.php');
-            }
-        ?>
         <div class="d-flex justify-content-center align-items-center min-vh-100">
-            <!-- Modal statique toujours visible -->
+            <!-- modal statique toujours visible -->
             <div class="modal d-block position-static" tabindex="-1" aria-labelledby="staticModalLabel" aria-hidden="true" style="z-index: 0;">
                 <!-- La taille de la modal est large -->
                 <div class="modal-dialog modal-dialog-centered modal-m">
@@ -33,13 +36,13 @@
                             <h5 class="modal-title" id="staticModalLabel">Connexion à EDK</h5>
                         </div>
                         <!-- Formulaire -->
-                        <form id="formulaire" action="inc/accesSite.php" method="POST">
+                        <form id="formulaire" action="./PDO/PDO_accesSite.php" method="POST">
                             <!-- Contenu du corps de la modal -->
                             <div class="modal-body">
                                 <h6>Identifiant</h6>
                                 <!-- Champs du formulaire -->
                                 <input type="text" class="form-control mb-3" id="identifiant" name="identifiant" placeholder="Entrez votre identifiant" required>
-                                <h6>Mot de passee</h6>
+                                <h6>Mot de passe</h6>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
                             </div>
                             <!-- Footer / Boutons de validation du formulaire -->
@@ -65,14 +68,41 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <!-- Formulaire -->
-                    <form id="formulaire" action="???" method="POST">
+                    <form id="form-inscr" action="./PDO/PDO_inscription.php" method="POST">
                         <!-- Contenu du corps de la modal -->
                         <div class="modal-body">
-                            <h6>Identifiant</h6>
                             <!-- Champs du formulaire -->
-                            <input type="text" class="form-control mb-3" id="identifiant" name="identifiant" placeholder="Créez votre identifiant" required>
-                            <h6>Mot de passee</h6>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Créez votre mot de passe" required>
+
+                            <h6>
+                                Adresse mail:
+                            </h6>
+                            <input type="text" class="form-control mb-3" id="adresse-mail" name="adresse-mail" placeholder="Saisissez votre Adresse Mail" required>
+
+                            <h6>
+                                Identifiant:
+                            </h6>
+                            <input type="text" class="form-control mb-3" id="inscr-id" name="inscr-id" placeholder="Créez votre Identifiant" required>
+
+                            <h6>
+                                Mot de passe:
+                            </h6>
+                            <input type="password" class="form-control" id="inscr-pwd" name="inscr-pwd" placeholder="Créez votre Mot de Passe" required>
+
+                            <h6>
+                                Classe:
+                            </h6>
+                            <select name="classe-choix" class="form-select" aria-label="Default select example">
+                                <option value="-1">Choisissez votre Classe</option>
+                                <?php
+                                foreach ($listeAllClasses as $classe){
+
+                                    echo '<option value="'.$classe->getIdClasse().'">'.$classe->getNomClasse().'</option>';
+
+                                }
+                                ?>
+                            </select>
+
+
                         </div>
                         <!-- Footer / Boutons de validation du formulaire -->
                          <div class="modal-footer">
@@ -92,3 +122,4 @@
     </body>
     
 </html>
+
